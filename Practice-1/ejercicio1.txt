@@ -1,0 +1,37 @@
+Pregunta: 
+
+Indique las diferencias entre un lenguaje interpretado y uno compilado. 
+Indique ejemplos de cadauno si conoce.
+¿Si es de su inter´es investigue c´omo funcionan las opciones intermedias, 
+como por ejemplo JIT?
+¿En cual catalogaría a Go ?
+
+
+
+Respuesta: 
+
+Lenguaje interpretado:
+
+En un lenguaje interpretado, el código fuente se ejecuta directamente línea por línea sin necesidad de ser compilado previamente.
+Cada vez que el programa se ejecuta, el código fuente se traduce a instrucciones de máquina y se ejecuta en tiempo real.
+Los errores de sintaxis y otros errores se detectan durante la ejecución del programa.
+Ejemplos de lenguajes interpretados: Python, JavaScript, Ruby, PHP.
+
+
+Lenguaje compilado:
+
+En un lenguaje compilado, el código fuente se traduce previamente a código de máquina utilizando un proceso llamado compilación.
+El resultado de la compilación es un archivo binario (ejecutable) que contiene las instrucciones de máquina.
+Este archivo binario se ejecuta directamente en la computadora sin necesidad de ser traducido nuevamente.
+Los errores de sintaxis y otros errores se detectan durante el proceso de compilación.
+Ejemplos de lenguajes compilados: C, C++, Java, Rust.
+
+En cuanto a las opciones intermedias, el compilador Just-In-Time (JIT) es una técnica que combina características de compilación 
+y interpretación. En lugar de traducir todo el código fuente a código de máquina de antemano, como en un compilador tradicional, 
+el compilador JIT traduce el código fuente a código de máquina durante la ejecución del programa. Esto permite realizar
+optimizaciones en tiempo real y adaptar la ejecución del programa a las condiciones del sistema en el que se está ejecutando.
+
+En cuanto a Go, es un lenguaje de programación desarrollado por Google que se considera un lenguaje compilado. El código fuente 
+en Go se compila previamente a código de máquina y se genera un archivo binario (ejecutable) que se ejecuta directamente 
+en la computadora. Go no utiliza un compilador JIT, sino que utiliza un enfoque de compilación estática para generar código 
+altamente eficiente y de alto rendimiento.

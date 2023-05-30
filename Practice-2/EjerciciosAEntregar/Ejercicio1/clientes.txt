@@ -1,0 +1,13 @@
+42568222,Ramiro,Gutierrez Paulos,A,1000
+42568222,Ramiro,Gutierrez Paulos,B,2000
+42568222,Ramiro,Gutierrez Paulos,C,1000
+42568222,Ramiro,Gutierrez Paulos,B,2000
+42568222,Ramiro,Gutierrez Paulos,B,500
+42568222,Ramiro,Gutierrez Paulos,B,500
+42568222,Ramiro,Gutierrez Paulos,C,500
+42568222,Ramiro,Gutierrez Paulos,D,500
+42568222,Ramiro,Gutierrez Paulos,C,2000.5
+42568222,Ramiro,Gutierrez Paulos,C,1000
+42568222,Ramiro,Gutierrez Paulos,D,4400
+42568222,Ramiro,Gutierrez Paulos,D,4500
+42568222,Ramiro,Gutierrez Paulos,D,400
