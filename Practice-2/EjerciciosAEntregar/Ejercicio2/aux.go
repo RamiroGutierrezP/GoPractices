@@ -56,21 +56,19 @@ func main() {
 		ingresante.presentoTitulo = convertirStringABool(datos[6])
 		ingresante.codigoDeCarrera = datos[7]
 		// Agrego el ingresante al slice
-		ingresantes = append(ingresantes, ingresante)
-
-		//Si es de Bariloche informo nombre y apellido
-		if ingresante.ciudadOrigen == "Bariloche" {
-			fmt.Println(ingresante.nombre, ingresante.apellido)
+		
+		if ingresante.presentoTitulo == true{
+			ingresantes = append(ingresantes, ingresante)
+			//Si es de Bariloche informo nombre y apellido
+			if ingresante.ciudadOrigen == "Bariloche" {
+				fmt.Println(ingresante.nombre, ingresante.apellido)
+			}
+				//Cuento la cantidad de ingresantes por carrera
+				contadorDeCarreras = incrementarContador(ingresante.codigoDeCarrera, contadorDeCarreras)
+				// Incrementar año de nacimiento
+				aniosDeNacimiento = append(aniosDeNacimiento, ingresante.fechaNacimiento.anio)
+			}
 		}
-		//Si no presenta titulo lo tengo que eliminar de la lista
-		if ingresante.presentoTitulo == false {
-			ingresantes = ingresantes[:len(ingresantes)-1]
-		}
-		//Cuento la cantidad de ingresantes por carrera
-		contadorDeCarreras = incrementarContador(ingresante.codigoDeCarrera, contadorDeCarreras)
-		// Incrementar año de nacimiento
-		aniosDeNacimiento = append(aniosDeNacimiento, ingresante.fechaNacimiento.anio)
-	}
 
 	imprimirCarreraConMasIngresantes(contadorDeCarreras)
 	imprimirAnioDeNacimientoConMasIngresantes(aniosDeNacimiento)
