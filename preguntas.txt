@@ -15,6 +15,6 @@ Ejercicio 2
     - tengo que incrementar la carrera en la que se inscribio?
 
 
-
+Ambos ejercicios
 - Al cargar los datos del archivo, es necesario validar la cantidad de campos?
 
