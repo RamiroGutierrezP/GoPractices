@@ -1,7 +1,7 @@
 42568222,Ramiro,Gutierrez Paulos,A,1000
-42568222,Ramiro,Gutierrez Paulos,B,2000
+42568222,Ramiro,Gutierrez Paulos,C,2000
 42568222,Ramiro,Gutierrez Paulos,C,1000
-42568222,Ramiro,Gutierrez Paulos,B,2000
+42568222,Ramiro,Gutierrez Paulos,C,2000
 42568222,Ramiro,Gutierrez Paulos,B,500
 42568222,Ramiro,Gutierrez Paulos,B,500
 42568222,Ramiro,Gutierrez Paulos,C,500
