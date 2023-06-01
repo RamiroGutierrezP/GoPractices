@@ -136,7 +136,6 @@ func imprimirBarilochenses (barilochenses []string) {
 		fmt.Println(barilochenses[i])
 	}
 }
-
 func imprimirAnioDeNacimientoConMasIngresantes (aniosDeNacimiento map[int]int) {
 	var anioMaximo int
 	var maximo int
