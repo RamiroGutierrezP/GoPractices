@@ -3,7 +3,7 @@ Damian,Gomez,Bariloche,1,2,1998,false,LS
 Emanuel,Carrera,Magdalena,1,2,2002,true,APU
 Maria Emilia,Carrera,Bariloche,1,2,1998,true,LI
 Victoria,Gomez,Bariloche,1,2,2004,false,LI
-Andrea,Natale,Bariloche,1,2,1998,true,LI
+Andrea,Lamor,Bariloche,1,2,1998,true,LI
 Pablo,Perez,Bariloche,1,2,1998,true,LS
 Emiliano,Martinez,Bariloche,1,2,1998,false,LS
 Noemi,Castillo,Magdalena,1,2,2002,true,LS
