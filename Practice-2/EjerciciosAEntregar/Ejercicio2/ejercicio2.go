@@ -29,7 +29,7 @@ func main() {
 	var contadorDeCarreras [3]int
 	ingresantes := cargarIngresantes()
 	barilochenses := make([]string, 0)
-	aniosDeNacimiento := make([]int, 0)
+	aniosDeNacimiento := make(map[int]int)
 
 	//Recorro el slice de ingresantes y voy procesando los datos
 	for i := 0; i < len(ingresantes); i++ {
@@ -43,7 +43,7 @@ func main() {
 				barilochenses = append(barilochenses, ingresantes[i].nombre + " " + ingresantes[i].apellido)
 			}
 			contadorDeCarreras = incrementarContador(ingresantes[i].codigoDeCarrera, contadorDeCarreras)
-			aniosDeNacimiento = append(aniosDeNacimiento, ingresantes[i].fechaNacimiento.anio)
+			aniosDeNacimiento[ingresantes[i].fechaNacimiento.anio]++
 		}
 	}
 	
@@ -136,21 +136,16 @@ func imprimirBarilochenses (barilochenses []string) {
 		fmt.Println(barilochenses[i])
 	}
 }
-func imprimirAnioDeNacimientoConMasIngresantes (aniosDeNacimiento []int) {
-	var anioConMasIngresantes int
-	var cantidadDeIngresantes int
 
-	for i := 0; i < len(aniosDeNacimiento); i++ {
-		contadorDeIngresantes := 0
-		for j := 0; j < len(aniosDeNacimiento); j++ {
-			if aniosDeNacimiento[i] == aniosDeNacimiento[j] {
-				contadorDeIngresantes++
-			}
-		}
-		if contadorDeIngresantes > cantidadDeIngresantes {
-			cantidadDeIngresantes = contadorDeIngresantes
-			anioConMasIngresantes = aniosDeNacimiento[i]
+func imprimirAnioDeNacimientoConMasIngresantes (aniosDeNacimiento map[int]int) {
+	var anioMaximo int
+	var maximo int
+
+	for anio, cantidad := range aniosDeNacimiento {
+		if cantidad > maximo {
+			maximo = cantidad
+			anioMaximo = anio
 		}
 	}
-	fmt.Println("El año con mas ingresantes es: ", anioConMasIngresantes)
+	fmt.Println("El año de nacimiento con mas ingresantes es: ", anioMaximo)
 }
