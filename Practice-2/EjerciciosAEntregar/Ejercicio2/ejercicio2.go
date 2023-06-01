@@ -26,10 +26,10 @@ type Fecha struct {
 func main() {
 	
 	//Creo las variables
-	var contadorDeCarreras [3]int
 	ingresantes := cargarIngresantes()
 	barilochenses := make([]string, 0)
 	aniosDeNacimiento := make(map[int]int)
+ 	contadorDeCarreras := make(map[string]int)
 
 	//Recorro el slice de ingresantes y voy procesando los datos
 	for i := 0; i < len(ingresantes); i++ {
@@ -69,37 +69,17 @@ func convertirStringABool(booleano string) bool {
 	}
 	return valor
 }
-func incrementarContador(codigoDeCarrera string, contadorDeCarreras [3]int) [3]int {
-	switch codigoDeCarrera {
-	case "APU":
-		contadorDeCarreras[0]++
-	case "LI":
-		contadorDeCarreras[1]++
-	case "LS":
-		contadorDeCarreras[2]++
-	default:
-		fmt.Println("El codigo de carrera", codigoDeCarrera ,"no es valido")
-	}
-	return contadorDeCarreras
-}
-func informarCarreraConMasIngresantes (contadorDeCarreras [3]int) {
-	var carreraConMasIngresantes string
-	var cantidadDeIngresantes int
+func informarCarreraConMasIngresantes (contadorDeCarreras map[string]int) {
+	var carreraMaxima string
+	var maximo int
 
-	for i := 0; i < len(contadorDeCarreras); i++ {
-		if contadorDeCarreras[i] > cantidadDeIngresantes {
-			cantidadDeIngresantes = contadorDeCarreras[i]
-			switch i {
-			case 0:
-				carreraConMasIngresantes = "APU"
-			case 1:
-				carreraConMasIngresantes = "LI"
-			case 2:
-				carreraConMasIngresantes = "LS"
-			}
+	for carrera, cantidad := range contadorDeCarreras {
+		if cantidad > maximo {
+			maximo = cantidad
+			carreraMaxima = carrera
 		}
 	}
-	fmt.Println("La carrera con mas ingresantes es: ", carreraConMasIngresantes)
+	fmt.Println("La carrera con mas ingresantes es:", carreraMaxima)
 }
 func cargarIngresantes () []Ingresante {
 
@@ -146,5 +126,16 @@ func imprimirAnioDeNacimientoConMasIngresantes (aniosDeNacimiento map[int]int) {
 			anioMaximo = anio
 		}
 	}
-	fmt.Println("El año de nacimiento con mas ingresantes es: ", anioMaximo)
+	fmt.Println("El año de nacimiento con mas ingresantes es:", anioMaximo)
+}
+func incrementarContador (codigoDeCarrera string, contadorDeCarreras map[string]int) map[string]int {
+	switch codigoDeCarrera {
+	case "APU":
+		contadorDeCarreras["APU"]++
+	case "LI":
+		contadorDeCarreras["LI"]++
+	case "LS":
+		contadorDeCarreras["LS"]++
+	}
+	return contadorDeCarreras
 }
