@@ -2,33 +2,34 @@ package main
 
 import (
 	"fmt"
-	"sync"
 	"time"
 )
 
 func main() {
 	start := time.Now()
 	time.Sleep(1 * time.Second)
+	done := make(chan bool)
+	// var wg sync.WaitGroup
 
-	var wg sync.WaitGroup
 	var numero = 100000
 
-	wg.Add(1)
-	go obtenerPrimos(numero, &wg)
-	wg.Wait()
-
+	// wg.Add(1)
+	go obtenerPrimos(numero, done)
+	// wg.Wait()
+	<-done
 	elapsed := time.Since(start)
 
     fmt.Println("Speed-up:", elapsed)
 }
 
-func obtenerPrimos(numero int, wg *sync.WaitGroup) {
-	defer wg.Done()
+func obtenerPrimos(numero int, done chan bool) {
+	// defer wg.Done()
 	for i := 1; i <= numero; i++ {
 		if esPrimo(i) {
 			fmt.Println(i)
 		}
 	}
+	done <- true
 }
 func esPrimo(numero int) bool {
 	if numero == 1 {
