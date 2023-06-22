@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"sync"
 	"time"
@@ -8,6 +9,8 @@ import (
 
 
 func main() {
+	start := time.Now()
+
 	wg := sync.WaitGroup{}
 	colas := crearCanales(3)
 	cajas := crearCanales(3)
@@ -23,10 +26,12 @@ func main() {
 		}(i)
 	}
 	wg.Wait()
+	elapsed := time.Since(start)
+    fmt.Println("Speed-up:", elapsed)
 }
 
 func clientesLlegando(colas []chan int) {
-	for i := 0; i < 22; i++ {
+	for i := 0; i < 10; i++ {
 		//Envío el cliente a la cola correspondiente mediante el algoritmo de round robin
 		colas[i % 3] <- i
 	}

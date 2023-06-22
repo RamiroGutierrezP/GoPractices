@@ -1,11 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
 )
 
 func main() {
+	start := time.Now()
+	
 	caja := make(chan int)
 	cola := make(chan int)
 	go clientesLlegando(cola)
@@ -15,6 +18,9 @@ func main() {
 		<-caja
 	}
 	close(caja)
+
+	elapsed := time.Since(start)
+    fmt.Println("Speed-up:", elapsed)
 }
 
 //Simulo la llegada de clientes

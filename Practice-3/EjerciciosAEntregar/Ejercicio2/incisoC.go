@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"sync"
 	"time"
@@ -8,6 +9,8 @@ import (
 
 
 func main() {
+	start := time.Now()
+
 	wg := sync.WaitGroup{}
 	colas := crearColasConBuffer(3)
 	cajas := crearCanales(3)
@@ -23,6 +26,9 @@ func main() {
 		}(i)
 	}
 	wg.Wait()
+	
+	elapsed := time.Since(start)
+    fmt.Println("Speed-up:", elapsed)
 }
 func crearColasConBuffer(cantidad int) []chan int{
 	colas := make([]chan int, cantidad)
@@ -32,7 +38,7 @@ func crearColasConBuffer(cantidad int) []chan int{
 	return colas
 }
 func clientesLlegando(colas []chan int) {
-	for i := 0; i < 5; i++ {
+	for i := 0; i < 10; i++ {
 		//Envío el cliente a la cola que menos clientes tenga
 		obtenerColaConMenosClientes(colas) <- i		
 	}
