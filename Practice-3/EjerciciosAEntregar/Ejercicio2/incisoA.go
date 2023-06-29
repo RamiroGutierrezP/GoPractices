@@ -8,10 +8,10 @@ import (
 
 func main() {
 	start := time.Now()
-	
+	cantidadClientes := 100
 	caja := make(chan int)
 	cola := make(chan int)
-	go clientesLlegando(cola)
+	go clientesLlegando(cola, cantidadClientes)
 
 	for cliente := range cola {
 		go atenderCliente(cliente, caja)
@@ -20,12 +20,12 @@ func main() {
 	close(caja)
 
 	elapsed := time.Since(start)
-    fmt.Println("Speed-up:", elapsed)
+    fmt.Println("Duración:", elapsed)
 }
 
 //Simulo la llegada de clientes
-func clientesLlegando(cola chan int) {
-	for i := 1; i <= 10; i++ {
+func clientesLlegando(cola chan int, cantidadClientes int) {
+	for i := 1; i <= cantidadClientes; i++ {
 		cola <- i
 	}
 	close(cola)

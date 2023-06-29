@@ -8,7 +8,6 @@ import (
 func main() {
 	start := time.Now()
 	
-	time.Sleep(1 * time.Second)
 	done := make(chan bool)
 	// var wg sync.WaitGroup
 
@@ -20,7 +19,7 @@ func main() {
 	<-done
 
 	elapsed := time.Since(start)
-    fmt.Println("Speed-up:", elapsed)
+    fmt.Println("Duración:", elapsed)
 }
 
 func obtenerPrimos(numero int, done chan bool) {

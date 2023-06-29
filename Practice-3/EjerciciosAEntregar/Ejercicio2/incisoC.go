@@ -10,13 +10,16 @@ import (
 
 func main() {
 	start := time.Now()
-
+	
+	cantidadCajas := 3
+	cantidadClientes := 3
+	
 	wg := sync.WaitGroup{}
-	colas := crearColasConBuffer(3)
-	cajas := crearCanales(3)
-	go clientesLlegando(colas)
+	colas := crearColasConBuffer(cantidadCajas)
+	cajas := crearCanales(cantidadCajas)
+	go clientesLlegando(colas, cantidadClientes, cantidadCajas)
 	wg.Add(3)
-	for i := 0; i < 3; i++ {
+	for i := 0; i < cantidadCajas; i++ {
 		go func(i int) {
 			for cliente := range colas[i] {
 				go atenderCliente(cliente, i, cajas[i])
@@ -28,16 +31,16 @@ func main() {
 	wg.Wait()
 	
 	elapsed := time.Since(start)
-    fmt.Println("Speed-up:", elapsed)
+    fmt.Println("Duración:", elapsed)
 }
 func crearColasConBuffer(cantidad int) []chan int{
 	colas := make([]chan int, cantidad)
 	for i := 0; i < cantidad; i++ {
-		colas[i] = make(chan int, 7)
+		colas[i] = make(chan int, 100)
 	}
 	return colas
 }
-func clientesLlegando(colas []chan int) {
+func clientesLlegando(colas []chan int, cantidadClientes int, cantidadCajas int) {
 	for i := 0; i < 10; i++ {
 		//Envío el cliente a la cola que menos clientes tenga
 		obtenerColaConMenosClientes(colas) <- i		

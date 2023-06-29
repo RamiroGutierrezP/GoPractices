@@ -2,64 +2,41 @@ package main
 
 import (
 	"fmt"
+	"sync"
 	"time"
 )
 
 func main() {
 
 	start := time.Now()
+	wg := sync.WaitGroup{}
 
 	//Declaro las variables
-	var numero = 100000
-	primeraMitad := make(chan int)
-	segundaMitad := make(chan int)
+	var numero = 1000
+	var cantidad = 3
 
-	//Inicio las goroutines
-	go obtenerPrimosPrimeraMitad(numero, primeraMitad)
-	go obtenerPrimosSegundaMitad(numero, segundaMitad)
-	
-	//Mientras las goroutines no terminen, imprimo los numeros que vayan llegando
-	stop1, stop2 := false, false
-	for !stop1 || !stop2 {
-		select {
-		case numero, ok := <-primeraMitad:
-			if ok {
-				fmt.Println(numero)
-			} else {
-				stop1 = true
-			}
-		case numero, ok2 := <-segundaMitad:
-			if ok2 {
-				fmt.Println(numero)
-			} else {
-				stop2 = true
-			}
-		}
+	wg.Add(cantidad)
+	for i := 0; i < cantidad; i++ {
+		desde := (numero / cantidad) * i + 1
+		hasta := (numero / cantidad) * (i + 1) 
+		go obtenerPrimos(desde, hasta, &wg)
 	}
+	wg.Wait()
 
 	elapsed := time.Since(start)
-    fmt.Println("Speed-up:", elapsed)
+    fmt.Println("Duración:", elapsed)
 }
 
-func obtenerPrimosPrimeraMitad(numero int, primos chan<- int) {
-	for i := 1; i < numero/2; i++ {
+func obtenerPrimos(desde, hasta int, wg *sync.WaitGroup) {
+	defer wg.Done()
+	for i := desde; i <= hasta; i++ {
 		if esPrimo(i) {
-			primos <- i
+			fmt.Println(i)
 		}
 	}
-	close(primos)
-}
-func obtenerPrimosSegundaMitad(numero int, primos chan<- int) {
-	for i := numero/2; i <= numero; i++ {
-		if esPrimo(i) {
-			primos <- i
-		}
-	}
-	close(primos)
 }
 func esPrimo(numero int) bool {
-	//Podria sacarlo si inicializo el for en 2
-	if numero == 1 {
+	if numero <= 1 {
 		return false
 	}
 	//Verifica si es divisible por cada numero menor a si mismo
