@@ -18,7 +18,7 @@ func main() {
 	colas := crearColasConBuffer(cantidadCajas)
 	cajas := crearCanales(cantidadCajas)
 	go clientesLlegando(colas, cantidadClientes, cantidadCajas)
-	wg.Add(3)
+	wg.Add(cantidadCajas)
 	for i := 0; i < cantidadCajas; i++ {
 		go func(i int) {
 			for cliente := range colas[i] {
@@ -41,11 +41,11 @@ func crearColasConBuffer(cantidad int) []chan int{
 	return colas
 }
 func clientesLlegando(colas []chan int, cantidadClientes int, cantidadCajas int) {
-	for i := 0; i < 10; i++ {
+	for i := 0; i < cantidadClientes; i++ {
 		//Envío el cliente a la cola que menos clientes tenga
 		obtenerColaConMenosClientes(colas) <- i		
 	}
-	for i := 0; i < 3; i++ {
+	for i := 0; i < cantidadCajas; i++ {
 		close(colas[i])
 	}
 }

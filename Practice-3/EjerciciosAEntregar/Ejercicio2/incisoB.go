@@ -20,7 +20,7 @@ func main() {
 
 	go clientesLlegando(colas, cantidadClientes, cantidadCajas)
 
-	wg.Add(3)
+	wg.Add(cantidadCajas)
 	for i := 0; i < cantidadCajas; i++ {
 		go func(i int) {
 			for cliente := range colas[i] {
