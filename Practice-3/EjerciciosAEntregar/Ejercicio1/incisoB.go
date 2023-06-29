@@ -13,9 +13,15 @@ func main() {
 
 	//Declaro las variables
 	var numero = 1000
-	var cantidad = 3
+	var cantidad = 5
 
 	wg.Add(cantidad)
+	//Este condicional lo agrego porque si "numero" no es divisible 
+	// por "cantidad" entonces el ultimo rango de numeros no se va a calcular
+	if numero % cantidad != 0 {
+		wg.Add(1)
+		go obtenerPrimos(numero - (numero % cantidad) + 1, numero, &wg)
+	}
 	for i := 0; i < cantidad; i++ {
 		desde := (numero / cantidad) * i + 1
 		hasta := (numero / cantidad) * (i + 1) 
