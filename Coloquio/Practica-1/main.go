@@ -33,7 +33,7 @@ func main() {
 	}
 
 	// Imprimo
-	fmt.Println(frase)
+	fmt.Println("Frase corregida: ", frase)
 
 }
 
@@ -43,13 +43,13 @@ func corregir(frase string, pos int) string {
 	jueves := frase[pos : pos+6]
 
 	// Creo una cadena mutable para despues reemplazar el martes
-	reemplazo := []byte("martes")
+	reemplazo := []rune("martes")
 
 	// Recorro la palabra
-	for i := 0; i <= 5; i++ {
+	for i, char := range jueves {
 		// Si es mayuscula... modifico
-		if unicode.IsUpper(rune(jueves[i])) {
-			reemplazo[i] = byte(unicode.ToUpper(rune(reemplazo[i])))
+		if unicode.IsUpper(char) {
+			reemplazo[i] = unicode.ToUpper(reemplazo[i])
 		}
 	}
 
