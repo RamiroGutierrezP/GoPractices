@@ -11,7 +11,7 @@ func main() {
 	done := make(chan bool)
 	// var wg sync.WaitGroup
 
-	var numero = 100000
+	var numero = 1000
 
 	// wg.Add(1)
 	go obtenerPrimos(numero, done)

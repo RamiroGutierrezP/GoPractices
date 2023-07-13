@@ -48,7 +48,7 @@ func main() {
 	}
 	
 	//Informo los resultados 
-	informarCarreraConMasIngresantes(contadorDeCarreras)
+	imprimirCarreraConMasIngresantes(contadorDeCarreras)
 	imprimirBarilochenses(barilochenses)
 	imprimirAnioDeNacimientoConMasIngresantes(aniosDeNacimiento)
 
@@ -69,7 +69,7 @@ func convertirStringABool(booleano string) bool {
 	}
 	return valor
 }
-func informarCarreraConMasIngresantes (contadorDeCarreras map[string]int) {
+func imprimirCarreraConMasIngresantes (contadorDeCarreras map[string]int) {
 	var carreraMaxima string
 	var maximo int
 

@@ -11,17 +11,17 @@ import (
 func main() {
 	start := time.Now()
 	
-	cantidadCajas := 3
-	cantidadClientes := 3
+	cantidad := 3
+	cantidadClientes := 10
 
-	wg := sync.WaitGroup{}
-	colas := crearCanales(cantidadCajas)
-	cajas := crearCanales(cantidadCajas)
+	var wg sync.WaitGroup
+	colas := crearCanales(cantidad)
+	cajas := crearCanales(cantidad)
 
-	go clientesLlegando(colas, cantidadClientes, cantidadCajas)
+	go clientesLlegando(colas, cantidadClientes, cantidad)
 
-	wg.Add(cantidadCajas)
-	for i := 0; i < cantidadCajas; i++ {
+	wg.Add(cantidad)
+	for i := 0; i < cantidad; i++ {
 		go func(i int) {
 			for cliente := range colas[i] {
 				go atenderCliente(cliente, i, cajas[i])
@@ -36,12 +36,12 @@ func main() {
     fmt.Println("Duración:", elapsed)
 }
 
-func clientesLlegando(colas []chan int, cantidadClientes int, cantidadCajas int) {
+func clientesLlegando(colas []chan int, cantidadClientes int, cantidad int) {
 	for i := 0; i < cantidadClientes; i++ {
 		//Envío el cliente a la cola correspondiente mediante el algoritmo de round robin
 		colas[i % 3] <- i
 	}
-	for i := 0; i < cantidadCajas; i++ {
+	for i := 0; i < cantidad; i++ {
 		close(colas[i])
 	}
 }

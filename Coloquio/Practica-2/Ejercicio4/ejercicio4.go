@@ -36,15 +36,16 @@ func main() {
 
 func corregir(frase string, pos int) string {
 
-	formato := frase[pos : pos+10] 
-	palabra := []rune(formato)  
+	//En este caso tengo que hacer explicito el slice de runas porque el caracter "é" ocupa 2 bytes
+	miercoles := []rune(frase[pos : pos+10]) 
+
 	reemplazo := []rune("miércoles")
 
-	for i := 0; i < 9; i++ {
-		if unicode.IsUpper(palabra[i]) {
-			reemplazo[i] = unicode.ToUpper(rune(reemplazo[i]))
+	for i, char := range miercoles {
+		if unicode.IsUpper(char) {
+			reemplazo[i] = unicode.ToUpper(reemplazo[i])
 		}
 	}
 
-	return strings.ReplaceAll(frase, string(palabra), string(reemplazo))
+	return strings.ReplaceAll(frase, string(miercoles), string(reemplazo))
 }

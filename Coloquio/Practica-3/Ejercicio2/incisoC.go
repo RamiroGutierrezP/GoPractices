@@ -14,7 +14,7 @@ func main() {
 	cantidadCajas := 3
 	cantidadClientes := 3
 	
-	wg := sync.WaitGroup{}
+	var wg sync.WaitGroup
 	colas := crearColasConBuffer(cantidadCajas)
 	cajas := crearCanales(cantidadCajas)
 	go clientesLlegando(colas, cantidadClientes, cantidadCajas)

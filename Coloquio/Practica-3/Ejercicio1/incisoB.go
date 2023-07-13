@@ -9,7 +9,7 @@ import (
 func main() {
 
 	start := time.Now()
-	wg := sync.WaitGroup{}
+	var wg sync.WaitGroup
 
 	//Declaro las variables
 	var numero = 1000
